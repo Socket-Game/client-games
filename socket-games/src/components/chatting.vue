@@ -22,18 +22,17 @@ export default {
   data () {
     return {
       name: '',
-      message: '',
-      messages: []
+      message: ''
+    }
+  },
+  computed: {
+    messages () {
+      return this.$store.state.messages
     }
   },
   sockets: {
     connect () {
       console.log('-------conect')
-    },
-    serverMessage (newMessage) {
-      console.log('-----------dari server')
-      this.messages.push(newMessage)
-      // this.messages.push(newMessage)
     }
   },
   methods: {

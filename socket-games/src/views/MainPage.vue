@@ -33,10 +33,18 @@ export default {
   name: 'MainPage',
   data () {
     return {
-      question: 'tes baru'
+      question: 'tes page',
+      i: Math.ceil(Math.random() * 5)
     }
+  },
+  computed: {
+    questions () {
+      return this.$store.state.question.exercise
+    }
+  },
+  created () {
+    this.$store.dispatch('fetchQuestion', this.i)
   }
-
 }
 </script>
 

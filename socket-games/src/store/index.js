@@ -7,11 +7,15 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    question: {}
+    question: {},
+    messages: []
   },
   mutations: {
     setQuestion (state, payload) {
       state.question = payload
+    },
+    addMessage (state, newMessage) {
+      state.messages.push(newMessage)
     }
   },
   actions: {
@@ -28,6 +32,9 @@ export default new Vuex.Store({
       }).catch((err) => {
         console.log(err)
       })
+    },
+    SOCKET_serverMessage (context, messages) {
+      context.commit('addMessage', messages)
     }
   },
   modules: {

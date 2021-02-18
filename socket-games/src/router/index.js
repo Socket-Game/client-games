@@ -9,14 +9,7 @@ const routes = [
   {
     path: '/',
     name: 'LandingPage',
-    component: LandingPage,
-    beforeEnter: (to, from, next) => {
-      if (localStorage.Username) {
-        console.log('masih ada')
-      } else {
-        next()
-      }
-    }
+    component: LandingPage
   },
   {
     path: '/main',

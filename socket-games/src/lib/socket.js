@@ -1,15 +1,13 @@
 import Vue from 'vue'
-import VueSocketIO from 'vue-socket.io';
-
+import VueSocketIO from 'vue-socket.io'
 import store from '../store'
-
 const socket = new VueSocketIO({
   debug: true,
-  connection: "http://localhost:3000",
+  connection: 'http://localhost:3000',
   vuex: {
     store,
-    actionPrefix: "SOCKET_"
+    actionPrefix: 'SOCKET_'
   }
-});
+})
 
 Vue.use(socket)

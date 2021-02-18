@@ -10,12 +10,7 @@
     </div>
     <div class="wrapper">
       <div id="" style="color: black">
-        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Obcaecati cumque nihil voluptas pariatur molestias rem aliquam dolorem fugit magnam, suscipit quidem facere voluptatum accusamus vitae labore consectetur esse inventore consequatur!</p>
-        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Obcaecati cumque nihil voluptas pariatur molestias rem aliquam dolorem fugit magnam, suscipit quidem facere voluptatum accusamus vitae labore consectetur esse inventore consequatur!</p>
-        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Obcaecati cumque nihil voluptas pariatur molestias rem aliquam dolorem fugit magnam, suscipit quidem facere voluptatum accusamus vitae labore consectetur esse inventore consequatur!</p>
-        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Obcaecati cumque nihil voluptas pariatur molestias rem aliquam dolorem fugit magnam, suscipit quidem facere voluptatum accusamus vitae labore consectetur esse inventore consequatur!</p>
-        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Obcaecati cumque nihil voluptas pariatur molestias rem aliquam dolorem fugit magnam, suscipit quidem facere voluptatum accusamus vitae labore consectetur esse inventore consequatur!</p>
-        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Obcaecati cumque nihil voluptas pariatur molestias rem aliquam dolorem fugit magnam, suscipit quidem facere voluptatum accusamus vitae labore consectetur esse inventore consequatur!</p>
+        <Chat></Chat>
       </div>
     </div>
     <div class="wrapper-answer">
@@ -29,8 +24,12 @@
 </template>
 
 <script>
+import Chat from '../components/chatting'
 export default {
   name: 'MainPage',
+  components: {
+    Chat
+  },
   data () {
     return {
       question: 'tes page',

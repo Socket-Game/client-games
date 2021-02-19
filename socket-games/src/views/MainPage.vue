@@ -1,15 +1,17 @@
 <template>
-  <div class="container" style="margin-top: -40px">
+  <div class="container" style="margin-top: 40px">
     <h2>SOAL ke {{questions.id}}: {{questions.exercise}}?</h2>
-    <span style="color: yellow">
-      Life: {{poin}}
+    <div id="line">
+    <span style="color: yellow ; font-size: 30px">
+      SCORE: {{poin}}
     </span>
     <div class="wrapper-chat">
       <form action="" @submit.prevent="sendMessage">
         <label for="" style="color: white; margin-right: 10px">Chat</label>
         <input type="text" v-model="message">
-        <button type="submit" class="btn btn-primary" style="margin: 0 0 0 20px">Send</button>
+        <button type="submit" class="btn btn-success" style="margin: 0 0 0 20px">Send</button>
       </form>
+    </div>
     </div>
     <div class="wrapper">
       <div id="" style="color: black">
@@ -20,7 +22,7 @@
       <form action="" @submit.prevent="sendAnswer">
         <label for="" style="color: white; margin-right: 10px">Jawaban</label>
         <input type="text" v-model="answer">
-        <button type="submit" class="btn btn-primary" style="margin: 0 0 0 20px">Jawab</button>
+        <button type="submit" class="btn btn-success" style="margin: 0 0 0 20px">Jawab</button>
       </form>
     </div>
   </div>
@@ -96,15 +98,21 @@ h2 {
   /* max-height: 480px; */
   overflow-y: auto;
   width: 800px;
-  height: 350px;
+  height: 450px;
   margin: 0 0 0 150px;
-  background-color: aliceblue;
+  background-color: #709fb0;
+  border-radius: 20px;
+  box-shadow: 0px 0px 24px -5px rgba(0,0,0,0.75);
 }
 .wrapper-answer{
   margin: 20px 0 0 -420px
 }
 
 .wrapper-chat{
-  margin: 0 0 10px 450px
+  margin: 0 0 10px 330px
+}
+#line {
+  display: flex;
+  margin-left: 150px;
 }
 </style>

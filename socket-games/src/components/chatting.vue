@@ -44,4 +44,10 @@ li{
   .right{
     text-align: right;
   }
+  #chatBox {
+    color: whitesmoke;
+  }
+  small {
+    font-weight: 400;
+  }
 </style>

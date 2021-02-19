@@ -1,22 +1,25 @@
 <template>
   <div class="container" style="margin-top: -40px">
-    <h2>SOAL: {{question}}?</h2>
+    <h2>SOAL ke {{questions.id}}: {{questions.exercise}}?</h2>
+    <span style="color: yellow">
+      Life: <i class="fa fa-star" aria-hidden="true"></i>
+    </span>
     <div class="wrapper-chat">
-      <form action="">
+      <form action="" @submit.prevent="sendMessage">
         <label for="" style="color: white; margin-right: 10px">Chat</label>
-        <input type="text">
+        <input type="text" v-model="message">
         <button type="submit" class="btn btn-primary" style="margin: 0 0 0 20px">Send</button>
       </form>
     </div>
     <div class="wrapper">
       <div id="" style="color: black">
-        <Chat></Chat>
+        <Chat :messages="messages"></Chat>
       </div>
     </div>
     <div class="wrapper-answer">
-      <form action="">
+      <form action="" @submit.prevent="sendAnswer">
         <label for="" style="color: white; margin-right: 10px">Jawaban</label>
-        <input type="text">
+        <input type="text" v-model="answer">
         <button type="submit" class="btn btn-primary" style="margin: 0 0 0 20px">Jawab</button>
       </form>
     </div>
@@ -33,16 +36,51 @@ export default {
   data () {
     return {
       question: 'tes page',
-      i: Math.ceil(Math.random() * 5)
+      i: Math.ceil(Math.random() * 5),
+      message: '',
+      name: '',
+      answer: '',
+      number: 0
     }
   },
   computed: {
     questions () {
-      return this.$store.state.question.exercise
+      // this.$socket.emit('newQuestion', this.$store.state.question)
+      return this.$store.state.question
+    },
+    messages () {
+      return this.$store.state.messages
+    }
+  },
+  sockets: {
+    connect () {
+      console.log('-------conect')
+    }
+  },
+  methods: {
+    sendMessage () {
+      const newMessage = {
+        text: this.message,
+        id: +new Date(),
+        name: this.name
+      }
+      this.$socket.emit('newMessage', newMessage)
+      this.messages.push(newMessage)
+      this.message = ''
+    },
+    sendAnswer () {
+      const answer = {
+        id: this.questions.id,
+        answer: this.answer
+      }
+      this.$store.dispatch('checkAnswer', answer)
+      this.answer = ''
+      this.angka = 0
     }
   },
   created () {
-    this.$store.dispatch('fetchQuestion', this.i)
+    this.name = localStorage.Username
+    this.$store.dispatch('fetchQuestion', 1)
   }
 }
 </script>
@@ -56,7 +94,7 @@ h2 {
   /* max-height: 480px; */
   overflow-y: auto;
   width: 800px;
-  height: 450px;
+  height: 350px;
   margin: 0 0 0 150px;
   background-color: aliceblue;
 }

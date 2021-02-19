@@ -6,6 +6,13 @@
   </div>
 </template>
 
+<script>
+export default {
+  name: 'App',
+  components: {}
+}
+</script>
+
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -13,6 +20,8 @@
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  background-color: #4a47a3;
+  height: 100vh;
 }
 
 #nav {
@@ -21,7 +30,7 @@
 
 #nav a {
   font-weight: bold;
-  color: #2c3e50;
+  color: #ffffff;
 }
 
 #nav a.router-link-exact-active {

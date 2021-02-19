@@ -14,7 +14,14 @@ const routes = [
   {
     path: '/main',
     name: 'MainPage',
-    component: MainPage
+    component: MainPage,
+    beforeEnter: (to, from, next) => {
+      if (localStorage.Username) {
+        next()
+      } else {
+        console.log('belum isi username')
+      }
+    }
   }
 ]
 

@@ -1,17 +1,17 @@
 <template>
-  <div class="container">
-    <div class="row">
-        <div class="col-md-6">
-            <div class="card">
-                <form class="box" v-on:submit.prevent="inputUsername">
-                    <h1></h1>
-                    <p class="text-muted"> Please enter your Username</p>
-                    <input type="text" v-model="Username" name="" placeholder="Username">
-                    <input type="submit" name="" value="Join The Game" href="#" >
-                </form>
-            </div>
-        </div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="card">
+        <form class="box" v-on:submit.prevent="inputUsername">
+          <h1>{{Username}}</h1>
+          <p class="text-muted"> Please enter your Username</p>
+          <input type="text" v-model="Username" name="" placeholder="Username">
+          <input type="submit" name="" value="Join The Game" href="#" >
+        </form>
+      </div>
     </div>
+  </div>
 </div>
 </template>
 
@@ -32,13 +32,6 @@ export default {
 </script>
 
 <style>
-body {
-    margin: 0;
-    padding: 0;
-    font-family: sans-serif;
-    background: linear-gradient(to right, #b92b27, #1565c0)
-}
-
 .box {
     width: 500px;
     padding: 40px;

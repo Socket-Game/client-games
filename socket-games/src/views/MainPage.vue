@@ -1,15 +1,17 @@
 <template>
   <div class="container" style="margin-top: -40px">
     <h2>SOAL ke {{questions.id}}: {{questions.exercise}}?</h2>
-    <span style="color: yellow">
-      Life: <i class="fa fa-star" aria-hidden="true"></i>
-    </span>
-    <div class="wrapper-chat">
+    <div id="point">
+      <span style="color: yellow">
+        Point: {{poin}}
+      </span>
+      <div class="wrapper-chat">
       <form action="" @submit.prevent="sendMessage">
         <label for="" style="color: white; margin-right: 10px">Chat</label>
         <input type="text" v-model="message">
         <button type="submit" class="btn btn-primary" style="margin: 0 0 0 20px">Send</button>
       </form>
+    </div>
     </div>
     <div class="wrapper">
       <div id="" style="color: black">
@@ -50,6 +52,9 @@ export default {
     },
     messages () {
       return this.$store.state.messages
+    },
+    poin () {
+      return this.$store.state.poin
     }
   },
   sockets: {
@@ -103,6 +108,11 @@ h2 {
 }
 
 .wrapper-chat{
-  margin: 0 0 10px 450px
+  margin: 0 0 10px 410px
+}
+
+#point{
+  display: flex;
+  margin: 0 0 0 150px;
 }
 </style>

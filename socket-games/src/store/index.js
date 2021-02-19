@@ -9,7 +9,8 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     question: {},
-    messages: []
+    messages: [],
+    poin: 0
   },
   mutations: {
     setQuestion (state, payload) {
@@ -18,6 +19,12 @@ export default new Vuex.Store({
     },
     addMessage (state, newMessage) {
       state.messages.push(newMessage)
+    },
+    addPoint (state, point) {
+      state.poin += point
+    },
+    resetPoint (state, point) {
+      state.poin = 0
     }
   },
   actions: {
@@ -52,14 +59,16 @@ export default new Vuex.Store({
         url: `/questions/${payload.id}`
       }).then((response) => {
         if (response.data.answer === payload.answer.toUpperCase()) {
-          swal('Success!', 'You answer is wrong!', 'success')
+          swal('Success!', 'Your answer is right!', 'success')
+          context.commit('addPoint', 10)
           let id = ++payload.id
           if (id === 6) {
             id = 1
+            context.commit('resetPoint')
           }
           context.dispatch('fetchQuestion', id)
         } else {
-          swal('Wrong!', 'You answer is wrong!', 'error')
+          swal('Wrong!', 'Your answer is wrong!', 'error')
         }
       }).catch(err => {
         console.log(err)

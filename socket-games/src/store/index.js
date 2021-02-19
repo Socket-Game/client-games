@@ -39,7 +39,6 @@ export default new Vuex.Store({
       }).then((response) => {
         console.log(response)
         context.commit('setQuestion', response.data)
-        // context.commit('setQuestion', response.data)
       }).catch((err) => {
         console.log(err)
       })
@@ -48,10 +47,19 @@ export default new Vuex.Store({
       context.commit('addMessage', messages)
     },
     SOCKET_serverQuestion (context, messages) {
-      // context.commit('addMessage', messages)
-      // context.commit('setQuestion', messages)
-      context.dispatch('fetchQuestion', messages)
-      // console.log(messages)
+      if (messages === 1) {
+        context.dispatch('fetchQuestion', messages)
+      } else {
+        swal('Success!', 'Your answer is right!', 'success')
+        context.dispatch('fetchQuestion', messages)
+      }
+    },
+    SOCKET_serverAddPoint (context, message) {
+      context.commit('addPoint', message)
+    },
+    SOCKET_serverResetPoint (context) {
+      swal('Success!', 'Your answer is right!', 'success')
+      context.commit('resetPoint')
     },
     checkAnswer (context, payload) {
       axios({
@@ -59,12 +67,14 @@ export default new Vuex.Store({
         url: `/questions/${payload.id}`
       }).then((response) => {
         if (response.data.answer === payload.answer.toUpperCase()) {
-          swal('Success!', 'Your answer is right!', 'success')
-          context.commit('addPoint', 10)
           let id = ++payload.id
           if (id === 6) {
             id = 1
-            context.commit('resetPoint')
+            this._vm.$socket.emit('newQuestion', id)
+            this._vm.$socket.emit('resetPoint')
+          } else {
+            this._vm.$socket.emit('addPoint', 10)
+            this._vm.$socket.emit('newQuestion', id)
           }
           context.dispatch('fetchQuestion', id)
         } else {

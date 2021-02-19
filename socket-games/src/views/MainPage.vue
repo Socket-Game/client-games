@@ -1,17 +1,15 @@
 <template>
   <div class="container" style="margin-top: -40px">
     <h2>SOAL ke {{questions.id}}: {{questions.exercise}}?</h2>
-    <div id="point">
-      <span style="color: yellow">
-        Point: {{poin}}
-      </span>
-      <div class="wrapper-chat">
+    <span style="color: yellow">
+      Life: {{poin}}
+    </span>
+    <div class="wrapper-chat">
       <form action="" @submit.prevent="sendMessage">
         <label for="" style="color: white; margin-right: 10px">Chat</label>
         <input type="text" v-model="message">
         <button type="submit" class="btn btn-primary" style="margin: 0 0 0 20px">Send</button>
       </form>
-    </div>
     </div>
     <div class="wrapper">
       <div id="" style="color: black">
@@ -26,6 +24,7 @@
       </form>
     </div>
   </div>
+  <!-- this._vm.$socket.emit('someEvent', someData); -->
 </template>
 
 <script>
@@ -41,13 +40,11 @@ export default {
       i: Math.ceil(Math.random() * 5),
       message: '',
       name: '',
-      answer: '',
-      number: 0
+      answer: ''
     }
   },
   computed: {
     questions () {
-      // this.$socket.emit('newQuestion', this.$store.state.question)
       return this.$store.state.question
     },
     messages () {
@@ -85,7 +82,7 @@ export default {
   },
   created () {
     this.name = localStorage.Username
-    this.$store.dispatch('fetchQuestion', 1)
+    this.$socket.emit('newQuestion', 1)
   }
 }
 </script>
@@ -108,11 +105,6 @@ h2 {
 }
 
 .wrapper-chat{
-  margin: 0 0 10px 410px
-}
-
-#point{
-  display: flex;
-  margin: 0 0 0 150px;
+  margin: 0 0 10px 450px
 }
 </style>
